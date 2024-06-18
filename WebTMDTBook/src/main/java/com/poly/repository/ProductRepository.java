@@ -3,8 +3,11 @@ package com.poly.repository;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.poly.model.Product;
@@ -23,5 +26,10 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
 	boolean existsByProductName(String productName);
 //	lọc sản phẩm
 	List<Product> findByCategoryCategoryId(int categoryId);
-
+	Page<Product> findByPriceBetween(double minPrice, double maxPrice, Pageable pageable);
+	 
+	 Page<Product> findByProductNameContaining(String productName, Pageable pageable);
+	
+	@Query("SELECT p FROM Product p WHERE p.category.categoryId = :categoryId")
+   Page<Product> findProductsByCategory(@Param("category") Integer categoryId, Pageable pageable);
 }

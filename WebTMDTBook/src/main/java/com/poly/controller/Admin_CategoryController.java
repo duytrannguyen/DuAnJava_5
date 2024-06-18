@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.poly.model.Category;
+import com.poly.model.Product;
 import com.poly.repository.CategoryRepository;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -41,11 +43,31 @@ public class Admin_CategoryController {
 		return "redirect:/admin/Category";
 	}
 	@GetMapping("/Category/edit/{categoryId}")
-	public String edit(Model model, @PathVariable("categoryId") Integer id) {
+	public String edit(Model model,HttpServletRequest req, @PathVariable("categoryId") Integer id) {
 		Category item = categoryRepository.findById(id).get();
-		model.addAttribute("item", item);
-		List<Category> items = categoryRepository.findAll();
-		model.addAttribute("items", items);
+		model.addAttribute("category", item);
+		List<Category> categories = categoryRepository.findAll();
+		model.addAttribute("categories", categories);
+		req.setAttribute("view", "/views/admin/QuanLyTheLoai/index.jsp");
+		return "indexAdmin";
+	}
+	@RequestMapping("/Category/update/{categoryId}")
+	public String update(Model model,HttpServletRequest req, @PathVariable("categoryId") Integer id, @RequestParam("categoryName") String categoryName) {
+		Category category = categoryRepository.findById(id).get();
+		category.setCategoryName(categoryName);
+		categoryRepository.save(category);
 		return "redirect:/admin/Category";
+	}
+	@RequestMapping("/Category/delete/{categoryId}")
+	public String create(@PathVariable("categoryId") Integer id) {
+		categoryRepository.deleteById(id);
+		return "redirect:/admin/Category";
+	}
+	@PostMapping("/Category/reset")
+	public String restProducts(HttpServletRequest req, Model model) {
+		List<Category> categories = categoryRepository.findAll();
+		model.addAttribute("categories", categories);
+		req.setAttribute("view", "/views/admin/QuanLyTheLoai/index.jsp");
+		return "indexAdmin";
 	}
 }

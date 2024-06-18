@@ -63,8 +63,8 @@ public class User {
 	@Column(nullable = false)
 	private String phone;
 
-	@Column(nullable = false)
-	private String address;
+//	@Column(nullable = false)
+//	private String address;
 
 	@ManyToOne
 	@JoinColumn(name = "roleId", nullable = false)
