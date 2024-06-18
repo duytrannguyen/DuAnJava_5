@@ -140,14 +140,14 @@ a {
 							</div>
 						</div>
 						<hr>
-						<%-- <div class="mb-3 row">
+						<div class="mb-3 row">
 							<label for="address" class="col-sm-5 col-form-label">Địa
 								Chỉ</label>
 							<div class="col-sm-7">
 								<textarea class="form-control" id="address" name="address"
 									rows="3">${itemProd.address}</textarea>
 							</div>
-						</div> --%>
+						</div>
 						<hr>
 						<div class="mb-3 row">
 							<label for="profileImage" class="col-sm-5 col-form-label">Hình

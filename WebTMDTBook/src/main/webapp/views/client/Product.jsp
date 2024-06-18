@@ -9,6 +9,16 @@
 <meta charset="UTF-8">
 <title>Sản Phẩm</title>
 
+<style type="text/css">
+.pagination .page-item .page-link.selected {
+	font-weight: bold;
+}
+
+.lb {
+	padding: 5px;
+}
+</style>
+
 <link rel="stylesheet" href="/css/style.css">
 <link rel="stylesheet" href="/css/client/products.css">
 <link
@@ -47,35 +57,48 @@
 						<br>
 						<ul class="ul">
 							<ul>
-								<a><strong>GIÁ</strong> </a>
-								<li class="list-group-item"><input
-									class="form-check-input me-1" type="checkbox" value=""
-									id="firstCheckbox"> <label class="form-check-label"
-									for="firstCheckbox">0đ - 50,000đ</label></li>
-								<li class="list-group-item"><input
-									class="form-check-input me-1" type="checkbox" value=""
-									id="secondCheckbox"> <label class="form-check-label"
-									for="secondCheckbox">50,000đ - 150,000đ</label></li>
-								<li class="list-group-item"><input
-									class="form-check-input me-1" type="checkbox" value=""
-									id="thirdCheckbox"> <label class="form-check-label"
-									for="thirdCheckbox">150,000đ - 250,000đ</label></li>
-								<li class="list-group-item"><input
-									class="form-check-input me-1" type="checkbox" value=""
-									id="thirdCheckbox"> <label class="form-check-label"
-									for="thirdCheckbox">250,000đ - 350,000đ</label></li>
-								<li class="list-group-item"><input
-									class="form-check-input me-1" type="checkbox" value=""
-									id="thirdCheckbox"> <label class="form-check-label"
-									for="thirdCheckbox">350,000đ - 500,000đ</label></li>
-								<li class="list-group-item"><input
-									class="form-check-input me-1" type="checkbox" value=""
-									id="thirdCheckbox"> <label class="form-check-label"
-									for="thirdCheckbox">500,000đ - 700,000đ</label></li>
-								<li class="list-group-item"><input
-									class="form-check-input me-1" type="checkbox" value=""
-									id="thirdCheckbox"> <label class="form-check-label"
-									for="thirdCheckbox">700,000đ - Trở liên</label></li>
+								<a><strong>GIÁ</strong></a>
+								<form action="/home/products" method="post"
+									id="product-filter-form" onchange="this.submit()">
+									<ul class="list-group">
+										<li class="list-group-item"><input
+											class="form-check-input me-1 price-filter" type="checkbox"
+											value="0-50000" name="price_range" id="price0-50"> <label
+											class="form-check-label" for="price0-50">Dưới 50,000đ</label>
+										</li>
+										<li class="list-group-item"><input
+											class="form-check-input me-1 price-filter" type="checkbox"
+											value="50000-150000" name="price_range" id="price50-150">
+											<label class="form-check-label" for="price50-150">50,000đ
+												- 150,000đ</label></li>
+										<li class="list-group-item"><input
+											class="form-check-input me-1 price-filter" type="checkbox"
+											value="150000-250000" name="price_range" id="price150-250">
+											<label class="form-check-label" for="price150-250">150,000đ
+												- 250,000đ</label></li>
+										<li class="list-group-item"><input
+											class="form-check-input me-1 price-filter" type="checkbox"
+											value="250000-350000" name="price_range" id="price250-350">
+											<label class="form-check-label" for="price250-350">250,000đ
+												- 350,000đ</label></li>
+										<li class="list-group-item"><input
+											class="form-check-input me-1 price-filter" type="checkbox"
+											value="350000-500000" name="price_range" id="price350-500">
+											<label class="form-check-label" for="price350-500">350,000đ
+												- 500,000đ</label></li>
+										<li class="list-group-item"><input
+											class="form-check-input me-1 price-filter" type="checkbox"
+											value="500000-700000" name="price_range" id="price500-700">
+											<label class="form-check-label" for="price500-700">500,000đ
+												- 700,000đ</label></li>
+										<li class="list-group-item"><input
+											class="form-check-input me-1 price-filter" type="checkbox"
+											value="700000-999999999" name="price_range" id="price700-">
+											<label class="form-check-label" for="price700-">Trên
+												700,000đ</label></li>
+									</ul>
+								</form>
+
 							</ul>
 						</ul>
 						<hr>
@@ -83,67 +106,37 @@
 						<ul class="ul">
 							<ul>
 								<a><strong>THỂ LOẠI</strong></a>
-								<li class="list-group-item"><input
-									class="form-check-input me-1" type="checkbox"
-									value="children-books" id="category-1"> <label
-									class="form-check-label" for="category-1">Sách thiếu
-										nhi</label></li>
-								<li class="list-group-item"><input
-									class="form-check-input me-1" type="checkbox"
-									value="psychology-books" id="category-2"> <label
-									class="form-check-label" for="category-2">Sách tâm lý,
-										tình cảm</label></li>
-								<li class="list-group-item"><input
-									class="form-check-input me-1" type="checkbox"
-									value="social-culture-books" id="category-3"> <label
-									class="form-check-label" for="category-3">Sách văn hoá
-										xã hội</label></li>
-								<li class="list-group-item"><input
-									class="form-check-input me-1" type="checkbox"
-									value="history-books" id="category-4"> <label
-									class="form-check-label" for="category-4">Sách lịch sử</label></li>
-								<li class="list-group-item"><input
-									class="form-check-input me-1" type="checkbox"
-									value="sci-fi-books" id="category-5"> <label
-									class="form-check-label" for="category-5">Sách văn học
-										viễn tưởng</label></li>
-								<li class="list-group-item"><input
-									class="form-check-input me-1" type="checkbox"
-									value="biography-books" id="category-6"> <label
-									class="form-check-label" for="category-6">Sách tiểu sử,
-										tự truyện</label></li>
+
+								<form id="filter-form">
+									<div class="form-group">
+										<div class="form-check">
+											<input class="form-check-input" type="radio"
+												name="categoryId" id="categoryIdAll" value="0"
+												<c:if test="${empty param.categoryId or param.categoryId == 0}">checked</c:if>
+												onchange="redirectToProductPage()"> <label
+												class="form-check-label" for="categoryIdAll">Tất cả</label>
+										</div>
+
+										<c:forEach var="c" items="${categories}">
+											<div class="form-check">
+												<input class="form-check-input" type="radio"
+													value="${c.categoryId}" name="categoryId"
+													id="category-${c.categoryId}"
+													<c:if test="${param.categoryId == c.categoryId}">checked</c:if>
+													onchange="submitFilterForm()"> <label
+													class="form-check-label" for="category-${c.categoryId}">${c.categoryName}</label>
+											</div>
+										</c:forEach>
+									</div>
+								</form>
 							</ul>
-							<ul class="d-none" id="extraList">
-								<li class="list-group-item"><input
-									class="form-check-input me-1" type="checkbox"
-									value="science-books" id="category-7"> <label
-									class="form-check-label" for="category-7">Sách khoa học</label>
-								</li>
-								<li class="list-group-item"><input
-									class="form-check-input me-1" type="checkbox"
-									value="economics-books" id="category-8"> <label
-									class="form-check-label" for="category-8">Sách kinh tế</label></li>
-								<li class="list-group-item"><input
-									class="form-check-input me-1" type="checkbox"
-									value="technology-books" id="category-9"> <label
-									class="form-check-label" for="category-9">Sách công
-										nghệ</label></li>
-							</ul>
-							<p>
-								<a href="#" id="showMoreBtn" style="margin-left: 70px;"
-									class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Xem
-									Thêm <i class="fa-solid fa-arrow-down"></i>
-								</a> <a href="#" id="showLessBtn" style="margin-left: 70px;"
-									class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover d-none">Thu
-									gọn <i class="fa-solid fa-arrow-up"></i>
-								</a>
-							</p>
 						</ul>
-						<hr>
+
+
 						<!-- 					NHÀ CUNG CẤP -->
-						<ul class="ul">
+						<!-- 			<ul class="ul">
 							<ul>
-								<!-- Current list -->
+								Current list
 								<a><strong>NHÀ CUNG CẤP</strong></a>
 								<li class="list-group-item"><input
 									class="form-check-input me-1" type="checkbox" value=""
@@ -167,7 +160,7 @@
 									for="secondCheckbox">NXB Phụ nữ Việt Nam</label></li>
 							</ul>
 							<ul class="d-none" id="extraListNCC">
-								<!-- "Xem thêm" list -->
+								"Xem thêm" list
 								<li class="list-group-item"><input
 									class="form-check-input me-1" type="checkbox" value=""
 									id="extraCheckbox1"> <label class="form-check-label"
@@ -190,20 +183,24 @@
 									gọn <i class="fa-solid fa-arrow-up"></i>
 								</a>
 							</p>
-						</ul>
+						</ul> -->
 					</div>
 				</div>
 				<!-- 				NỘI DUNG PHẢI -->
 				<div class="col-md-9">
 					<div class="card" style="padding: 20px">
 						<div class="row">
-							<div class="col-md-4">
-								<label for="inputState">Sắp xếp theo:</label> <select
-									id="inputState" class="form-select">
-									<option selected>Bán Chạy Tuần</option>
-									<option>Bán Chạy Tháng</option>
-									<option>Mới Nhất</option>
-								</select>
+							<div class="col-md-5">
+								<label class="lb"><em><b>Tìm kiếm sản phẩm</b></em></label>
+								<form class="d-flex" role="search" action="/home/products"
+									method="get">
+									<input class="form-control me-2" type="search"
+										aria-label="Search" name="keyName">
+									<button class="btn btn-outline-primary" type="submit"
+										id="liveToastBtn">
+										<i class="fa-solid fa-magnifying-glass"></i>
+									</button>
+								</form>
 							</div>
 						</div>
 						<hr>
@@ -262,20 +259,17 @@
 									<ul class="pagination mb-0">
 										<li class="page-item"><a
 											class="page-link bg-black bg-gradient text-info hover-bg-primary hover-color-white btn-lg"
-											href="?pageNo=0" aria-label="Previous"> <span
-												aria-hidden="true">&laquo;</span>
+											href="?pageNo=${pageClick > 0 ? pageClick - 1 : 0}"
+											aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
 										</a></li>
 										<c:forEach var="pageNum" items="${totalPageProduct}">
-											<li
-												class="page-item ${pageClick == pageNum - 1 ? 'active' : ''}">
-												<a
-												class="page-link bg-black bg-gradient text-info hover-bg-primary hover-color-white btn-lg"
-												href="?pageNo=${pageNum - 1}"> ${pageNum} </a>
-											</li>
+											<li class="page-item"><a
+												class="page-link bg-black bg-gradient text-info hover-bg-primary hover-color-white btn-lg ${pageClick == pageNum - 1 ? 'selected' : ''}"
+												href="?pageNo=${pageNum - 1}"> ${pageNum} </a></li>
 										</c:forEach>
 										<li class="page-item"><a
 											class="page-link bg-black bg-gradient text-info hover-bg-primary hover-color-white btn-lg"
-											href="?pageNo=${pageProduct.getTotalPages() - 1}"
+											href="?pageNo=${pageClick < totalPageProduct.size() - 1 ? pageClick + 1 : totalPageProduct.size() - 1}"
 											aria-label="Next"> <span aria-hidden="true">&raquo;</span>
 										</a></li>
 									</ul>
@@ -295,7 +289,49 @@
 	const showMoreBtn = document.getElementById('showMoreBtn');
 	const showLessBtn = document.getElementById('showLessBtn');
 	const extraList = document.getElementById('extraList');
+	const priceFilters = document.querySelectorAll('.price-filter');
 	
+	// Lưu trạng thái của checkbox
+	function saveCheckboxState() {
+	  const checkboxes = document.querySelectorAll('.price-filter');
+	  const checkedValue = Array.from(checkboxes).find(checkbox => checkbox.checked)?.value;
+	  localStorage.setItem('checkedPriceRange', checkedValue);
+	}
+
+	// Khôi phục trạng thái của checkbox
+	function restoreCheckboxState() {
+	  const checkedValue = localStorage.getItem('checkedPriceRange');
+	  if (checkedValue) {
+	    const checkboxes = document.querySelectorAll('.price-filter');
+	    checkboxes.forEach(checkbox => {
+	      checkbox.checked = checkbox.value === checkedValue;
+	    });
+	  }
+	}
+
+	// Thêm sự kiện click cho các checkbox
+	const priceFilterCheckboxes = document.querySelectorAll('.price-filter');
+	priceFilterCheckboxes.forEach(checkbox => {
+	  checkbox.addEventListener('click', () => {
+	    // Tắt tất cả các checkbox khác
+	    priceFilterCheckboxes.forEach(otherCheckbox => {
+	      if (otherCheckbox !== checkbox) {
+	        otherCheckbox.checked = false;
+	      }
+	    });
+	    saveCheckboxState();
+	  });
+	});
+
+	// Khôi phục trạng thái khi trang được tải
+	restoreCheckboxState();
+
+	// Gọi các hàm này khi cần thiết
+	document.addEventListener('DOMContentLoaded', restoreCheckboxState);
+	document.querySelectorAll('.price-filter').forEach(checkbox => {
+	  checkbox.addEventListener('change', saveCheckboxState);
+	});
+	  
 	showMoreBtn.addEventListener('click', () => {
 		  extraList.classList.remove('d-none');
 		  showMoreBtn.classList.add('d-none');
@@ -323,6 +359,16 @@
 		showMoreNCC.classList.remove('d-none');
 		showLessNCC.classList.add('d-none');
 		});
+	
+	 function submitFilterForm() {
+		    document.getElementById('filter-form').submit();
+		  }
+
+		  function redirectToProductPage() {
+		    window.location.href = "/home/products";
+		  }
+		 
+		  
 	</script>
 </body>
 </html>

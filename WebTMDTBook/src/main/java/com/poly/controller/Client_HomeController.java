@@ -13,20 +13,25 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.poly.model.CartItem;
+import com.poly.model.Category;
 import com.poly.model.Image;
 import com.poly.model.Product;
 import com.poly.model.ShoppingCart;
 import com.poly.repository.CartItemRepository;
+import com.poly.repository.CategoryRepository;
 import com.poly.repository.ImageRepository;
 import com.poly.repository.ProductRepository;
 import com.poly.repository.ShoppingCartRepository;
+import com.poly.service.CategoryService;
 import com.poly.service.ProductService;
 
 @Controller
@@ -45,47 +50,120 @@ public class Client_HomeController {
 	@Autowired
 	ShoppingCartRepository shoppingCartRepository;
 	@Autowired
-	private ProductService productService;
+	ProductService productService;
+	@Autowired
+	CategoryRepository categoryRepository;
+	@Autowired
+	CategoryService categoryService;
 
 	@GetMapping("/index")
 	public String home(Model model) {
 		List<Product> products = productService.getAllProducts();
 		model.addAttribute("products", products);
+		List<Category> categories = categoryService.getAllCategory();
+		model.addAttribute("categories", categories);
 		return "indexClient";
 	}
 
-	@GetMapping("/tieuthuyet")
-	public String locThieuThuyet(Model model) {
-		int id = 2;
-		List<Product> products = productService.getProductsByCategoryId(id);
+	@GetMapping("/filter/{categoryId}")
+	public String locThieuThuyet(Model model, @PathVariable("categoryId") Integer categoryId) {
+		List<Product> products = productService.getProductsByCategoryId(categoryId);
 		model.addAttribute("products", products);
 		return "client/Product";
 	}
 
-	@GetMapping("/about")
-	public String about() {
-		return "client/About";
-	}
-
+//	@GetMapping("/products")
+//	public String products(Model model, @RequestParam("pageNo") Optional<Integer> pageNo) {
+//		Sort sort = Sort.by(Direction.DESC, "productId");
+//		Pageable pageable = PageRequest.of(pageNo.orElse(0), 4, sort);
+//		Page<Product> page = productRepository.findAll(pageable);
+//
+//		List<Integer> totalPages = new ArrayList<Integer>();
+//		for (int i = 0; i < page.getTotalPages(); i++) {
+//			totalPages.add(i + 1);
+//		}
+//
+//		List<Product> products = page.getContent();
+//
+//		model.addAttribute("totalPageProduct", totalPages);
+//		model.addAttribute("pageProduct", page);
+//		model.addAttribute("pageClick", pageNo.orElse(0));
+//
+//		model.addAttribute("products", products);
+//
+//		return "client/Product";
+//	}
 
 	@GetMapping("/products")
-	public String products(Model model, @RequestParam("pageNo") Optional<Integer> pageNo) {
-		Sort sort = Sort.by(Direction.DESC, "productId");
-		Pageable pageable = PageRequest.of(pageNo.orElse(0), 4, sort);
-		Page<Product> page = productRepository.findAll(pageable);
+	public String products(Model model, @RequestParam(name = "keyName", required = false) String keyName,
+			@RequestParam("pageNo") Optional<Integer> pageNo,
+			@RequestParam(name = "categoryId", required = false) Integer categoryId) {
 
-		List<Integer> totalPages = new ArrayList<Integer>();
+		Sort sort = Sort.by(Direction.DESC, "productId");
+		Pageable pageable = PageRequest.of(pageNo.orElse(0), 10, sort);
+
+		Page<Product> page;
+		if (StringUtils.hasText(keyName)) {
+			page = productRepository.findByProductNameContaining(keyName, pageable);
+		} else if (categoryId != null) {
+			page = productRepository.findProductsByCategory(categoryId, pageable);
+		} else {
+			page = productRepository.findAll(pageable);
+		}
+
+		List<Integer> totalPages = new ArrayList<>();
 		for (int i = 0; i < page.getTotalPages(); i++) {
 			totalPages.add(i + 1);
 		}
 
 		List<Product> products = page.getContent();
+		List<Category> categories = categoryRepository.findAll(Sort.by(Direction.DESC, "categoryId"));
 
+		model.addAttribute("categories", categories);
 		model.addAttribute("totalPageProduct", totalPages);
 		model.addAttribute("pageProduct", page);
 		model.addAttribute("pageClick", pageNo.orElse(0));
-
 		model.addAttribute("products", products);
+		model.addAttribute("selectedCategoryId", categoryId);
+
+		return "client/Product";
+	}
+
+	@PostMapping("/products")
+	public String priceProducts(Model model, @RequestParam("pageNo") Optional<Integer> pageNo,
+			@RequestParam(name = "categoryId", required = false) Integer categoryId,
+			@RequestParam("price_range") Optional<String> priceRange) {
+
+		Sort sort = Sort.by(Direction.DESC, "productId");
+		Pageable pageable = PageRequest.of(pageNo.orElse(0), 10, sort);
+
+		Page<Product> page;
+		if (priceRange.isPresent()) {
+			String[] prices = priceRange.get().split("-");
+			double minPrice = Double.parseDouble(prices[0]);
+			double maxPrice = Double.parseDouble(prices[1]);
+
+			page = productRepository.findByPriceBetween(minPrice, maxPrice, pageable);
+		} else if (categoryId != null) {
+			page = productRepository.findProductsByCategory(categoryId, pageable);
+		} else {
+			page = productRepository.findAll(pageable);
+		}
+
+		List<Integer> totalPages = new ArrayList<>();
+		for (int i = 0; i < page.getTotalPages(); i++) {
+			totalPages.add(i + 1);
+		}
+
+		List<Product> products = page.getContent();
+		List<Category> categories = categoryRepository.findAll(Sort.by(Direction.DESC, "categoryId"));
+
+		model.addAttribute("categories", categories);
+		model.addAttribute("totalPageProduct", totalPages);
+		model.addAttribute("pageProduct", page);
+		model.addAttribute("pageClick", pageNo.orElse(0));
+		model.addAttribute("products", products);
+		model.addAttribute("selectedCategoryId", categoryId);
 
 		return "client/Product";
 	}
@@ -118,21 +196,28 @@ public class Client_HomeController {
 
 	}
 
-	@GetMapping("products/details/cart")
-	public String Cart(Model model) {
-
-		List<CartItem> cartItemts = cartItemRepository.findAll(Sort.by(Direction.DESC, "cartItemId"));
-		model.addAttribute("cartItemts", cartItemts);
-
-		return "client/Cart";
-	}
+//	@GetMapping("products/details/cart")
+//	public String Cart(Model model) {
+//
+//		List<CartItem> cartItemts = cartItemRepository.findAll(Sort.by(Direction.DESC, "cartItemId"));
+//		model.addAttribute("cartItemts", cartItemts);
+//
+//		return "client/Cart";
+//	}
 
 	@GetMapping("/products/details/cart/pay")
 	public String Pay() {
 		return "client/Pay";
 	}
 
-	
+	@GetMapping("/about")
+	public String about() {
+		return "client/About";
+	}
 
+	@GetMapping("/Contact")
+	public String Contact() {
+		return "client/Contact";
+	}
 
 }

@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	
-	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-	
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -105,28 +105,34 @@ img {
 		<div class="card">
 			<div class="col-md-12">
 				<div class="row">
-				
-				  
+
+
 					<!-- 				chi tiết sản phẩm -->
 					<div class="col-md-5">
-						<img src="/Image_SP/${product.imageId.imageName}" class="card-img-top" style="width: 300px; margin-left: 100px" alt="...">
+						<img src="/Image_SP/${product.imageId.imageName}"
+							class="card-img-top" style="width: 300px; margin-left: 100px"
+							alt="...">
 						<!-- <img src="/images/sach3.jpg" class="card-img-top" alt="..."> -->
-						<a href="cart"><button type="button"
-								class="btn btn-outline-primary btnn"">
+						<a href="cart/${productId}">
+							<button type="button" class="btn btn-outline-primary btnn">
 								<i class="fa-solid fa-cart-plus"></i> Thêm Vào Giỏ Hàng
-							</button></a> <a href="cart/pay"><button type="button"
+							</button>
+						</a>
+						</button>
+						</a> <a href="cart/pay"><button type="button"
 								class="btn btn-primary btnn">Mua Ngay</button></a>
 					</div>
 					<div class="col-md-7">
-						<h4> ${product.productName}</h4>
+						<h4>${product.productName}</h4>
 						<br> <span class="nccap">Nhà cung cấp: <strong
-							class="nccap">Kim đồng</strong></span><br> <span
-							class="nccap">Nhà Xuất bản: <strong class="nccap">${product.manufacturer}</strong></span> <br>
+							class="nccap">Kim đồng</strong></span><br> <span class="nccap">Nhà
+							Xuất bản: <strong class="nccap">${product.manufacturer}</strong>
+						</span> <br>
 						<hr>
-						<br> <span class="giaBan"><strong>${product.price}</strong></span> <span
-							class="giamGia">99.000đ</span> <span class="badge text-bg-danger">-10%</span>
-						<br> 
-						
+						<br> <span class="giaBan"><strong>${product.price}</strong></span>
+						<span class="giamGia">99.000đ</span> <span
+							class="badge text-bg-danger">-10%</span> <br>
+
 						<!-- <span class="nccap" style="margin-right: 35px;">Thời
 							gian giao hàng </span> <span class="nccap">Giao hàng đến: <strong
 							class="nccap" style="margin-right: 10px;">Phường Lê
@@ -136,18 +142,18 @@ img {
 								đổi</a></span> <br> <span class="nccap" style="margin-left: 153px;">Dự
 							kiến giao hàng <strong class="nccap">Thứ sáu, 24/05</strong>
 						</span>  -->
-						
+
 						<br>
 						<hr>
 						<div class="col-md-3">
-									<div class="d-flex align-items-center">
-										<button class="btn btn-secondary btn-sm"
-											onclick="decrementValue()">-</button>
-										<span class="mx-2" id="value">1</span>
-										<button class="btn btn-secondary btn-sm"
-											onclick="incrementValue()">+</button>
-									</div>
-								</div>
+							<div class="d-flex align-items-center">
+								<button class="btn btn-secondary btn-sm"
+									onclick="decrementValue()">-</button>
+								<span class="mx-2" id="value">1</span>
+								<button class="btn btn-secondary btn-sm"
+									onclick="incrementValue()">+</button>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -159,7 +165,7 @@ img {
 			<div class="col-md-12">
 				<div class="row">
 					<div class="col-md-3">
-						<p>Mã Sản Phẩm:</p>
+					
 						<p>Nhà Cung Cấp:</p>
 						<p>Nhà Xuất Bản:</p>
 						<p>Tác Giả:</p>
@@ -170,10 +176,11 @@ img {
 						<p>Số Trang:</p>
 					</div>
 					<!-- 				thông tin -->
-					
-					
-					 
+
+
+
 					<div class="col-md-9">
+						
 						<p>Kim đồng</p>
 						<p>${product.manufacturer}</p>
 						<p>${product.author}</p>
@@ -194,8 +201,8 @@ img {
 					<p>
 						<strong> ${product.productName}</strong>
 					</p>
-					<h6>GIỚI THIỆU TÁC PHẨM</h6> 
-					<p> ${product.description}</p>
+					<h6>GIỚI THIỆU TÁC PHẨM</h6>
+					<p>${product.description}</p>
 				</span>
 
 				<button id="showMoreMota" type="button"
@@ -206,37 +213,38 @@ img {
 					Gọn</button>
 			</div>
 		</div>
-		
-	
-		
+
+
+
 		<br>
 		<div class="card">
 			<h5>SẢN PHẨM GỢI Ý</h5>
 			<div class="col-md-12">
 				<div class="row">
-				
-				 <c:forEach var="p" items="${products}">
-				 
-					<div class="col-md-3">
-						<a href="products/details/{productCode}" class="a-product text-decoration-none">
-							<div class="card h-100 border-0 shadow-sm hover-shadow-lg"
-								style="display: block;">
-								<img src="/Image_SP/${p.imageId.imageName}" class="card-img-top"
-								style="height: 250px; width: 220px; padding: 5px 20px 5px 20px; margin-left: 27px;">
-									
-								<div class="card-body">
-									<span
-										style="font-size: medium; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis; max-width: 100%;">
-										${p.productName}</span>
-									<div class="d-flex flex-column">
-										<span class="giaBann">${p.price}</span> <span
-											class="giaGiamm text-muted">98.000đ</span>
+
+					<c:forEach var="p" items="${products}">
+
+						<div class="col-md-3">
+							<a href="${p.productId}" class="a-product text-decoration-none">
+								<div class="card h-100 border-0 shadow-sm hover-shadow-lg"
+									style="display: block;">
+									<img src="/Image_SP/${p.imageId.imageName}"
+										class="card-img-top"
+										style="height: 250px; width: 220px; padding: 5px 20px 5px 20px; margin-left: 27px;">
+
+									<div class="card-body">
+										<span
+											style="font-size: medium; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis; max-width: 100%;">
+											${p.productName}</span>
+										<div class="d-flex flex-column">
+											<span class="giaBann">${p.price}</span> <span
+												class="giaGiamm text-muted">98.000đ</span>
+										</div>
 									</div>
 								</div>
-							</div>
-						</a>
-					</div>
-					
+							</a>
+						</div>
+
 					</c:forEach>
 
 				</div>
