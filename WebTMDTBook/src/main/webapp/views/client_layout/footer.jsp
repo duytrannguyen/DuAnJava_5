@@ -1,65 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-
-<meta charset="utf-8">
-<meta name="author" content="templatemo">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-<link
-	href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap"
-	rel="stylesheet">
-
-<title>Liberty Template - NFT Item Detail Page</title>
-
-<!-- Bootstrap core CSS -->
-<link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-
-<!-- Additional CSS Files -->
-<link rel="stylesheet" href="/assets/css/fontawesome.css">
-<link rel="stylesheet" href="/assets/css/templatemo-liberty-market.css">
-<link rel="stylesheet" href="/assets/css/owl.css">
-<link rel="stylesheet" href="/assets/css/animate.css">
-<link rel="stylesheet"
-	href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
-<!--
-
-TemplateMo 577 Liberty Market
-
-https://templatemo.com/tm-577-liberty-market
-
--->
-<style type="text/css">
-.a-product {
-	transition: all 0.3s ease-in-out;
-}
-
-.a-product:hover {
-	transform: translateY(-5px);
-	box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-}
-
-.hover-shadow-lg:hover {
-	box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;
-}
-
-.btnn {
-	margin-top: 40px;
-	margin-left: 20px;
-	margin-bottom: 10px;
-	width: 220px;
-	height: 40px;
-	width: 220px;
-}
-</style>
-</head>
-
 <body>
 	<footer>
 		<div class="container">
@@ -68,13 +8,13 @@ https://templatemo.com/tm-577-liberty-market
 					<p>
 						Copyright 2024 <a href="#">QLBook</a> Store Co., Ltd. All rights
 						reserved. &nbsp;&nbsp; Designed by <a title="HTML CSS Templates"
-							rel="sponsored" href="#" target="_blank">Nhom2</a>
+							rel="sponsored" href="#" target="_blank">Nhóm 2</a>
 					</p>
 				</div>
 			</div>
 		</div>
 	</footer>
-	<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static"
+	<!-- <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static"
 		data-bs-keyboard="false" tabindex="-1"
 		aria-labelledby="staticBackdropLabel" aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered">
@@ -82,8 +22,8 @@ https://templatemo.com/tm-577-liberty-market
 				<div class="modal-header">
 					<h1 class="modal-title fs-5" id="staticBackdropLabel">Chọn Địa
 						Chỉ Giao Hàng</h1>
-					<!-- 					<button type="button" class="btn-close" data-bs-dismiss="modal" -->
-					<!-- 						aria-label="Close"></button> -->
+										<button type="button" class="btn-close" data-bs-dismiss="modal"
+											aria-label="Close"></button>
 				</div>
 				<div class="modal-body">
 
@@ -130,7 +70,7 @@ https://templatemo.com/tm-577-liberty-market
 		</div>
 
 
-	</div>
+	</div> -->
 	<!-- Scripts -->
 	<script>
 	const showMoreNCC = document.getElementById('showMoreMota');

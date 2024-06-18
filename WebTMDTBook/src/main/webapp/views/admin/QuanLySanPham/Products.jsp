@@ -58,7 +58,7 @@
                                                 <td><fmt:formatDate value="${item.postingDate}" pattern="dd-MM-yyyy" /></td>
                                                 <td>${item.quantity}</td>
                                                 <td>${item.description}</td>
-                                                <td>${item.category.categoryName}</td>
+                                                <td>${item.categoryz.categoryName}</td>
                                                 <td><img src="/Image_SP/${item.imageId.imageName}" width="100px" height="100px"></td>
                                                 <td><a href="/admin/products/edit/${item.productId}" class="btn btn-danger">Edit</a></td>
                                                 <td colspan="1"><a href="#" class="btn btn-danger" onclick="confirmDelete(${item.productId})"><i class="fa-solid fa-trash"></i></a></td>
