@@ -37,7 +37,12 @@ public class CartItem {
 	    @JoinColumn(name = "product_id", nullable = false)
 	    private Product product;
 
-	    @ManyToOne(fetch = FetchType.LAZY)
-	    @JoinColumn(name = "cart_code", nullable = false)
+//	    @ManyToOne(fetch = FetchType.LAZY)
+//	    @JoinColumn(name = "cart_code", nullable = false)
+//	    private ShoppingCart shoppingCart;
+	    
+	    //ly
+	    @ManyToOne
+	    @JoinColumn(name = "cartId", referencedColumnName = "cartId",  nullable = false)
 	    private ShoppingCart shoppingCart;
 }
