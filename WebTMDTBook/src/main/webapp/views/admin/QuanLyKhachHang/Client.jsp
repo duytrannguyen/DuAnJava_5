@@ -143,7 +143,7 @@ a {
 												<th>Số Điện Thoại</th>
 												<th>Email</th>
 												<th>Giới Tính</th>
-												<th>Địa Chỉ</th>
+												<!-- <th>Địa Chỉ</th> -->
 												<th>Vai trò</th>
 												<th></th>
 												<th></th>
@@ -159,7 +159,7 @@ a {
 													<td>${item.phone}</td>
 													<td>${item.email}</td>
 													<td>${item.gender ? 'Nam' : 'Nữ'}</td>
-													<td>${item.address}</td>
+													<%-- <td>${item.address}</td> --%>
 													<td>${item.roleId.roleName}</td>
 													<td><a href="/admin/client/edit/${item.usersId}">Edit</a>
 													</td>

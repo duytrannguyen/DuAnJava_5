@@ -63,12 +63,20 @@ public class User {
 	@Column(nullable = false)
 	private String phone;
 
-	@Column(nullable = false)
-	private String address;
+//	@Column(nullable = false)
+//	private String address;
 
 	@ManyToOne
 	@JoinColumn(name = "roleId", nullable = false)
 	private Role roleId;
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<ShoppingCart> shoppingCarts = new ArrayList<>();
+	
+	//ly
+	 @OneToMany(mappedBy = "users_id", cascade = CascadeType.ALL, orphanRemoval = true)
+	    private List<Address> addresses = new ArrayList<>();
+	 @Override
+	    public String toString() {
+	        return "User{address=" + addresses + "}";
+	    }
 }

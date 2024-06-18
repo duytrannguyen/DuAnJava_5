@@ -35,6 +35,7 @@ import lombok.ToString;
 //Khang
 @ToString(exclude = "invoiceItems")
 public class Product {
+	//ly
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int productId;
