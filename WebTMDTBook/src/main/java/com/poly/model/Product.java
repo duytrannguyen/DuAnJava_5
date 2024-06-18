@@ -34,6 +34,7 @@ import lombok.ToString;
 @Table(name = "Products", schema = "dbo", catalog = "DUANTN")
 @ToString
 public class Product {
+	//ly
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int productId;

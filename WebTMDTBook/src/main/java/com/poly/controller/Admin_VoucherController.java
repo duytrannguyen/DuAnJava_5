@@ -27,10 +27,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.poly.model.Discount;
 import com.poly.model.DiscountType;
-import com.poly.model.Voucher;
+import com.poly.repository.DiscountRepositopy;
+//import com.poly.model.Voucher;
 import com.poly.repository.DiscountTypeTRepository;
-import com.poly.repository.VoucherRepository;
+//import com.poly.repository.VoucherRepository;
 
 import io.micrometer.common.util.StringUtils;
 import jakarta.servlet.ServletContext;
@@ -41,8 +43,10 @@ import jakarta.validation.Valid;
 @Controller
 @RequestMapping("admin/voucher")
 public class Admin_VoucherController {
+//	@Autowired
+//	VoucherRepository voucherRepository;
 	@Autowired
-	VoucherRepository voucherRepository;
+	DiscountRepositopy discountRepositopy;
 
 	@Autowired
 	DiscountTypeTRepository discountTypeRepository;
@@ -68,16 +72,16 @@ public class Admin_VoucherController {
 	    Sort sort = Sort.by(Direction.DESC, "discountId");
 	    Pageable pageable = PageRequest.of(pageNo, pageSize, sort);
 
-	    Page<Voucher> page;
+	    Page<Discount> page;
 	    if (StringUtils.isNotBlank(key)) {
-	        page = voucherRepository.findByDiscountCode(key, pageable);
+	        page = discountRepositopy.findByDiscountCode(key, pageable);
 	    } else if (discountTypeId != null) {
-	        page = voucherRepository.findByDiscountTypeId(discountTypeId, pageable);
+	        page = discountRepositopy.findByDiscountTypeId(discountTypeId, pageable);
 	    } else {
-	        page = voucherRepository.findAll(pageable);
+	        page = discountRepositopy.findAll(pageable);
 	    }
 
-	    List<Voucher> vouchers = page.getContent();
+	    List<Discount> vouchers = page.getContent();
 	    if (vouchers.isEmpty()) {
 	        model.addAttribute("noVouchersFound", true);
 	    } else {
@@ -94,7 +98,7 @@ public class Admin_VoucherController {
 	}
 
 	@GetMapping("/add")
-	public String addProduct(@ModelAttribute("vc") Voucher vc, Model model, HttpServletRequest req,
+	public String addProduct(@ModelAttribute("vc") Discount vc, Model model, HttpServletRequest req,
 			HttpServletResponse resp) {
 		List<DiscountType> discountType = discountTypeRepository.findAll();
 		model.addAttribute("discountType", discountType);
@@ -115,7 +119,7 @@ public class Admin_VoucherController {
 
 	// thêm
 	@PostMapping("/create")
-	public String createVoucher(@Valid @ModelAttribute("vc") Voucher vc, BindingResult errors, Model model,
+	public String createVoucher(@Valid @ModelAttribute("vc") Discount vc, BindingResult errors, Model model,
 			HttpServletRequest req, @RequestParam("discountType") Integer discountTypeId) {
 		List<DiscountType> discountType = discountTypeRepository.findAll();
 		model.addAttribute("discountType", discountType);
@@ -140,14 +144,14 @@ public class Admin_VoucherController {
 		// Xử lý logic khi không có lỗi
 		DiscountType discountTypes = discountTypeRepository.findById(discountTypeId).get();
 		vc.setDiscountType(discountTypes);
-		voucherRepository.saveAndFlush(vc);
+		discountRepositopy.saveAndFlush(vc);
 		return "redirect:/admin/voucher/list";
 	}
 
 	@GetMapping("/edit/{discountId}")
-	public String editVoucher(HttpServletRequest req, @ModelAttribute("vc") Voucher vc, Model model,
+	public String editVoucher(HttpServletRequest req, @ModelAttribute("vc") Discount vc, Model model,
 			@PathVariable("discountId") Integer discountId) {
-		Voucher voucher = voucherRepository.findById(discountId)
+		Discount voucher = discountRepositopy.findById(discountId)
 				.orElseThrow(() -> new IllegalArgumentException("Không tìm thấy voucher"));
 		List<DiscountType> discountTypes = discountTypeRepository.findAll();
 		model.addAttribute("discountTypes", discountTypes);
@@ -157,7 +161,7 @@ public class Admin_VoucherController {
 	}
 
 	@PostMapping("/update/{discountId}")
-	public String updateVoucher(@Valid @ModelAttribute("vc") Voucher vc, BindingResult errors, Model model,
+	public String updateVoucher(@Valid @ModelAttribute("vc") Discount vc, BindingResult errors, Model model,
 			HttpServletRequest req, @RequestParam("discountId") Integer discountId,
 			@RequestParam("discountType") Integer discountTypeId, RedirectAttributes redirectAttributes) {
 		DiscountType discountType = discountTypeRepository.findById(discountTypeId)
@@ -165,7 +169,7 @@ public class Admin_VoucherController {
 		vc.setDiscountType(discountType);
 		if (errors.hasErrors()) {
 			redirectAttributes.addFlashAttribute("voucher", vc);
-			Voucher voucher = voucherRepository.findById(discountId)
+			Discount voucher = discountRepositopy.findById(discountId)
 					.orElseThrow(() -> new IllegalArgumentException("Không tìm thấy voucher"));
 			List<DiscountType> discountTypes = discountTypeRepository.findAll();
 			model.addAttribute("discountTypes", discountTypes);
@@ -187,17 +191,17 @@ public class Admin_VoucherController {
 			req.setAttribute("view", "/views/admin/QuanLyVoucher/Voucher/editVoucher.jsp");
 			return "indexAdmin";
 		}
-		voucherRepository.saveAndFlush(vc);
+		discountRepositopy.saveAndFlush(vc);
 		return "redirect:/admin/voucher/list";
 	}
 
 //xoá
 	@GetMapping("/remove/{discountId}")
 	public String removeVoucher(@PathVariable("discountId") Integer discountId, RedirectAttributes redirectAttributes) {
-	    Optional<Voucher> voucher = voucherRepository.findById(discountId);
+	    Optional<Discount> voucher = discountRepositopy.findById(discountId);
 	    if (voucher.isPresent()) {
 	        try {
-	            voucherRepository.delete(voucher.get());
+	        	discountRepositopy.delete(voucher.get());
 	            redirectAttributes.addFlashAttribute("message", "Xoá Thành Công");
 	            redirectAttributes.addFlashAttribute("deleteSuccess", true);
 	        } catch (Exception e) {

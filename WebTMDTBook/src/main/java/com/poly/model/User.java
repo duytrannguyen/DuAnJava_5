@@ -71,4 +71,12 @@ public class User {
 	private Role roleId;
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<ShoppingCart> shoppingCarts = new ArrayList<>();
+	
+	//ly
+	 @OneToMany(mappedBy = "users_id", cascade = CascadeType.ALL, orphanRemoval = true)
+	    private List<Address> addresses = new ArrayList<>();
+	 @Override
+	    public String toString() {
+	        return "User{address=" + addresses + "}";
+	    }
 }

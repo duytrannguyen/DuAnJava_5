@@ -38,5 +38,9 @@ public class InvoiceItem {
 	    @ManyToOne(fetch = FetchType.LAZY)
 	    @JoinColumn(name = "product_id", nullable = false)
 	    private Product product;
+	    
+	    //ly
+	    @Column(nullable = false)
+		private double price;
 
 }

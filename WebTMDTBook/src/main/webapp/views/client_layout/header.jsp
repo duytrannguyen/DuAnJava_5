@@ -140,24 +140,7 @@ https://templatemo.com/tm-577-liberty-market
 		</div>
 	</div>
 
-	<!-- Scripts -->
-	<script>
-	const showMoreNCC = document.getElementById('showMoreMota');
-	const showLessNCC = document.getElementById('collapseBtn');
-	const extraListNCC = document.getElementById('extraListMota');
-	
-	showMoreNCC.addEventListener('click', () => {
-		extraListNCC.classList.remove('d-none');
-		  showMoreNCC.classList.add('d-none');
-		  showLessNCC.classList.remove('d-none');
-		});
 
-	showLessNCC.addEventListener('click', () => {
-		extraListNCC.classList.add('d-none');
-		showMoreNCC.classList.remove('d-none');
-		showLessNCC.classList.add('d-none');
-		});
-</script>
 	<!-- Bootstrap core JavaScript -->
 	<script src="/vendor/jquery/jquery.min.js"></script>
 	<script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
