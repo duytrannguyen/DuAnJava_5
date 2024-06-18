@@ -14,16 +14,16 @@ import com.poly.model.User;
 public interface ShoppingCartRepository extends JpaRepository<ShoppingCart, Integer> {
 // <<<<<<< Bich_Di
 	
-    ShoppingCart findByUser(User user);
-    
-// =======
-
-	@Query("select c from ShoppingCart c where c.user.username =:username")
-	public ShoppingCart findByAccountId(String username);
-
-	// ly
-	List<ShoppingCart> findByUser(User user);
-
-	ShoppingCart findCurrentCartByUser(User user);
+//    ShoppingCart findByUser(User user);
+//    
+//// =======
+//
+//	@Query("select c from ShoppingCart c where c.user.username =:username")
+//	public ShoppingCart findByAccountId(String username);
+//
+//	// ly
+//	List<ShoppingCart> findByUser(User user);
+//
+//	ShoppingCart findCurrentCartByUser(User user);
 // >>>>>>> dev
 }

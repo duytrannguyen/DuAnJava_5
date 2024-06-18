@@ -19,11 +19,11 @@ import com.poly.model.ShoppingCart;
 
 public interface CartItemRepository extends JpaRepository<CartItem, Integer> {
 	
-    List<CartItem> findByCartId(ShoppingCart cartId, Sort sort);
+    List<CartItem> findByShoppingCart(ShoppingCart shoppingCart, Sort sort);
 
 // <<<<<<< Bich_Di
-    @Query("select c from CartItem c where c.cartId = :cartId and c.productId.productId = :productId")
-    CartItem findByCartIdAndProductId(@Param("cartId") ShoppingCart cartId, @Param("productId") Integer productId, Sort sort);
+    @Query("select c from CartItem c where c.cartItemId = :cartItemId and c.productId.productId = :productId")
+    CartItem findByCartIdAndProductId(@Param("cartItemId") ShoppingCart cartId, @Param("productId") Integer productId, Sort sort);
 // =======
 //	@Query("select c from CartItem c where c.cartItemId.cartItemId=:cartItemId and c.productId.productId = :productId")
 //	public CartItem findByCartIdAndProductId(Integer cartId, Integer productId);

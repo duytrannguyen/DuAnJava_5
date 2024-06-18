@@ -71,112 +71,15 @@ public class User {
 	private Role roleId;
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<ShoppingCart> shoppingCarts = new ArrayList<>();
-	
-// <<<<<<< Andaden
-	
-	
-	
-	
-// 	public User() {
-// 		super();
-// 	}
-// 	public User(int usersId, String username, String fullName, String password, String profileImage, Date birthDate,
-// 			Boolean gender, String email, String phone, String address, Role roleId, List<ShoppingCart> shoppingCarts) {
-// 		super();
-// 		this.usersId = usersId;
-// 		this.username = username;
-// 		this.fullName = fullName;
-// 		this.password = password;
-// 		this.profileImage = profileImage;
-// 		this.birthDate = birthDate;
-// 		this.gender = gender;
-// 		this.email = email;
-// 		this.phone = phone;
-// 		this.address = address;
-// 		this.roleId = roleId;
-// 		this.shoppingCarts = shoppingCarts;
-// 	}
-// 	public int getUsersId() {
-// 		return usersId;
-// 	}
-// 	public void setUsersId(int usersId) {
-// 		this.usersId = usersId;
-// 	}
-// 	public String getUsername() {
-// 		return username;
-// 	}
-// 	public void setUsername(String username) {
-// 		this.username = username;
-// 	}
-// 	public String getFullName() {
-// 		return fullName;
-// 	}
-// 	public void setFullName(String fullName) {
-// 		this.fullName = fullName;
-// 	}
-// 	public String getPassword() {
-// 		return password;
-// 	}
-// 	public void setPassword(String password) {
-// 		this.password = password;
-// 	}
-// 	public String getProfileImage() {
-// 		return profileImage;
-// 	}
-// 	public void setProfileImage(String profileImage) {
-// 		this.profileImage = profileImage;
-// 	}
-// 	public Date getBirthDate() {
-// 		return birthDate;
-// 	}
-// 	public void setBirthDate(Date birthDate) {
-// 		this.birthDate = birthDate;
-// 	}
-// 	public Boolean getGender() {
-// 		return gender;
-// 	}
-// 	public void setGender(Boolean gender) {
-// 		this.gender = gender;
-// 	}
-// 	public String getEmail() {
-// 		return email;
-// 	}
-// 	public void setEmail(String email) {
-// 		this.email = email;
-// 	}
-// 	public String getPhone() {
-// 		return phone;
-// 	}
-// 	public void setPhone(String phone) {
-// 		this.phone = phone;
-// 	}
-// 	public String getAddress() {
-// 		return address;
-// 	}
-// 	public void setAddress(String address) {
-// 		this.address = address;
-// 	}
-// 	public Role getRoleId() {
-// 		return roleId;
-// 	}
-// 	public void setRoleId(Role roleId) {
-// 		this.roleId = roleId;
-// 	}
-// 	public List<ShoppingCart> getShoppingCarts() {
-// 		return shoppingCarts;
-// 	}
-// 	public void setShoppingCarts(List<ShoppingCart> shoppingCarts) {
-// 		this.shoppingCarts = shoppingCarts;
-// 	}
-	
-	
+
 // =======
-	//ly
-	 @OneToMany(mappedBy = "users_id", cascade = CascadeType.ALL, orphanRemoval = true)
-	    private List<Address> addresses = new ArrayList<>();
-	 @Override
-	    public String toString() {
-	        return "User{address=" + addresses + "}";
-	    }
+	// ly
+	@OneToMany(mappedBy = "users_id", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Address> addresses = new ArrayList<>();
+
+	@Override
+	public String toString() {
+		return "User{address=" + addresses + "}";
+	}
 // >>>>>>> dev
 }

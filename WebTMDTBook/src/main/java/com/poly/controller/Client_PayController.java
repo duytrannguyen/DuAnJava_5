@@ -61,43 +61,43 @@ public class Client_PayController {
 	@Autowired
 	JavaMailSender sender;
 	
-	@RequestMapping("/products/details/cart/pay")
-	public String pay(Model model) {
-	    int userId = 7; // Thay đổi ID người dùng tùy theo logic của bạn
-	    // Lấy thông tin người dùng
-	    User user = userRepository.findById(userId).orElse(null);
-	    if (user == null) {
-	        return "redirect:/login"; // Chuyển hướng đến trang lỗi nếu không tìm thấy người dùng
-	    }
-	    // Lấy giỏ hàng hiện tại của người dùng
-	    ShoppingCart shoppingCart = shoppingCartRepository.findCurrentCartByUser(user);
-	    if (shoppingCart == null) {
-	        return "giohangtrong"; // Chuyển hướng đến trang lỗi nếu không tìm thấy giỏ hàng
-	    }
-	    // Lấy địa chỉ mặc định của người dùng
-	    Address defaultAddress = user.getAddresses().stream()
-	                                .filter(address -> address.isStatus())
-	                                .findFirst()
-	                                .orElse(null);
-
-	    // Lưu địa chỉ mặc định vào model
-	    model.addAttribute("address", defaultAddress);
-	    // Lưu cart_id vào session
-	    sessionService.set("cartId", shoppingCart.getCartId());
-	    // Lấy các mục giỏ hàng từ giỏ hàng hiện tại
-	    List<CartItem> cartItems = cartItemRepository.findByShoppingCart(shoppingCart);
-	    // Thêm danh sách sản phẩm vào model
-	    model.addAttribute("user", user);
-	    model.addAttribute("cartItems", cartItems);
-	    // Tính tổng giá trị giỏ hàng
-	    double total = cartItems.stream()
-	                             .mapToDouble(item -> item.getProduct().getPrice() * item.getQuantity())
-	                             .sum();
-	    model.addAttribute("total", total);
-	    // Lưu danh sách sản phẩm vào session
-	    sessionService.set("cartItems", cartItems);
-	    return "client/Pay";
-	}
+//	@RequestMapping("/products/details/cart/pay")
+//	public String pay(Model model) {
+//	    int userId = 7; // Thay đổi ID người dùng tùy theo logic của bạn
+//	    // Lấy thông tin người dùng
+//	    User user = userRepository.findById(userId).orElse(null);
+//	    if (user == null) {
+//	        return "redirect:/login"; // Chuyển hướng đến trang lỗi nếu không tìm thấy người dùng
+//	    }
+//	    // Lấy giỏ hàng hiện tại của người dùng
+//	    ShoppingCart shoppingCart = shoppingCartRepository.findCurrentCartByUser(user);
+//	    if (shoppingCart == null) {
+//	        return "giohangtrong"; // Chuyển hướng đến trang lỗi nếu không tìm thấy giỏ hàng
+//	    }
+//	    // Lấy địa chỉ mặc định của người dùng
+//	    Address defaultAddress = user.getAddresses().stream()
+//	                                .filter(address -> address.isStatus())
+//	                                .findFirst()
+//	                                .orElse(null);
+//
+//	    // Lưu địa chỉ mặc định vào model
+//	    model.addAttribute("address", defaultAddress);
+//	    // Lưu cart_id vào session
+//	    sessionService.set("cartId", shoppingCart.getCartId());
+//	    // Lấy các mục giỏ hàng từ giỏ hàng hiện tại
+//	    List<CartItem> cartItems = cartItemRepository.findByShoppingCart(shoppingCart);
+//	    // Thêm danh sách sản phẩm vào model
+//	    model.addAttribute("user", user);
+//	    model.addAttribute("cartItems", cartItems);
+//	    // Tính tổng giá trị giỏ hàng
+//	    double total = cartItems.stream()
+//	                             .mapToDouble(item -> item.getProduct().getPrice() * item.getQuantity())
+//	                             .sum();
+//	    model.addAttribute("total", total);
+//	    // Lưu danh sách sản phẩm vào session
+//	    sessionService.set("cartItems", cartItems);
+//	    return "client/Pay";
+//	}
 	@PostMapping("/products/details/cart/pay")
 	public String pay(@ModelAttribute("invoice") Invoice invoice, Model model,
 	                  @RequestParam("cart_id") ShoppingCart cart_id,
@@ -134,7 +134,7 @@ public class Client_PayController {
 	            InvoiceItem invoiceItem = new InvoiceItem();
 	            invoiceItem.setInvoice(invoice);
 	            // Gán Product từ cartItem cho invoiceItem
-	            Product product = cartItem.getProduct();
+	            Product product = cartItem.getProductId();
 	            if (product != null) {
 	                invoiceItem.setProduct(product);
 	                invoiceItem.setPrice(product.getPrice()); // Gán giá từ product

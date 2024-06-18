@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.poly.model.User;
-import com.poly.model.Users;
 import com.poly.service.ChangePasswordService;
 
 import jakarta.servlet.http.HttpSession;
@@ -24,11 +23,11 @@ public class ChangePasswordController {
 	@Autowired
     private ChangePasswordService passwordChangeService;
 
-    @GetMapping("/change")
-    public String showChangePasswordForm(Model model) {
-        model.addAttribute("passwordChangeRequest", new PasswordChangeRequest());
-        return "change-password";
-    }
+//    @GetMapping("/change")
+//    public String showChangePasswordForm(Model model) {
+//        model.addAttribute("passwordChangeRequest", new PasswordChangeRequest());
+//        return "change-password";
+//    }
 
     
     
@@ -37,7 +36,7 @@ public class ChangePasswordController {
 	                                    @RequestParam("oldPassword") String oldPassword,
 	                                    @RequestParam("newPassword") String newPassword,
 	                                    @RequestParam("confirmPassword") String confirmPassword) {
-	    Users users = (Users) session.getAttribute("username");
+	    User users = (User) session.getAttribute("username");
 	    if (users == null) {
 	        return "redirect:/auth/login";  // Redirect to login if not logged in
 	    }
@@ -59,8 +58,8 @@ public class ChangePasswordController {
 	    }
 
 	    // Update password in database
-	    Users.setPassword(newPassword);
-	    Users.saveAndFlush(username);
+	    users.setPassword(newPassword);
+//	    User.saveAndFlush(username);
 
 	    model.addAttribute("message4", "Đổi mật khẩu thành công!");
 	    return "user/changepassword";  // Redirect back to change password form with success message

@@ -100,7 +100,15 @@ img {
 </head>
 <body>
 	<jsp:include page="/views/client_layout/header.jsp" />
-	<br>
+	<div class="page-heading normal-space">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1>Chi tiết sản phẩm</h1>
+                </div>
+            </div>
+        </div>
+    </div>
 	<div class="container">
 		<div class="card">
 			<div class="col-md-12">
@@ -165,7 +173,6 @@ img {
 			<div class="col-md-12">
 				<div class="row">
 					<div class="col-md-3">
-					
 						<p>Nhà Cung Cấp:</p>
 						<p>Nhà Xuất Bản:</p>
 						<p>Tác Giả:</p>
@@ -180,7 +187,6 @@ img {
 
 
 					<div class="col-md-9">
-						
 						<p>Kim đồng</p>
 						<p>${product.manufacturer}</p>
 						<p>${product.author}</p>

@@ -59,7 +59,7 @@
 						</button>
 						<div class="collapse navbar-collapse" id="navbarNav">
 							<ul class="nav navbar-nav">
-								<li class="nav-item"><a href="/home/index" class="nav-link active">Home</a></li>
+								<li class="nav-item"><a href="/home/index" class="nav-link active">Trang Chủ</a></li>
 								<li class="nav-item"><a href="/home/about" class="nav-link">Giới Thiệu</a></li>
 								<li class="nav-item"><a href="/home/Contact" class="nav-link">Liên Hệ</a></li>
 								<li class="nav-item"><a href="/home/products" class="nav-link">Sản Phẩm</a></li>
@@ -68,12 +68,12 @@
 										Tài Khoản
 									</a>
 									<ul class="dropdown-menu" aria-labelledby="accountDropdown">
-										<li><a class="dropdown-item" href="#">Đăng Ký</a></li>
+										<li><a class="dropdown-item" href="/home/dangky">Đăng Ký</a></li>
 										<li><a class="dropdown-item" href="/home/login">Đăng Nhập</a></li>
-										<li><a class="dropdown-item" href="#">Quên Mật Khẩu</a></li>
+										<li><a class="dropdown-item" href="/home/login/quenmk">Quên Mật Khẩu</a></li>
 										<hr>
 										<li><a class="dropdown-item" href="#">Thông Tin Tài Khoản</a></li>
-										<li><a class="dropdown-item" href="#">Đổi Mật Khẩu</a></li>
+										<li><a class="dropdown-item" href="/home/login/doimk">Đổi Mật Khẩu</a></li>
 										<li><a class="dropdown-item" href="#">Giỏ Hàng</a></li>
 										<li><a class="dropdown-item" href="#">Đơn Hàng Đã Mua</a></li>
 										<li><a class="dropdown-item" href="#">Lịch Sử Đơn Hàng</a></li>

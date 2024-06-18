@@ -4,8 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.poly.dao.UserRepository;
-import com.poly.model.Users;
+import com.poly.model.User;
+import com.poly.repository.UserRepository;
+
+
 
 @Service
 public class ChangePasswordService {
@@ -17,7 +19,7 @@ public class ChangePasswordService {
 
     public void changePassword(String username, String oldPassword, String newPassword) {
         // Lấy thông tin người dùng từ database
-        Users user = usersRepository.findByUsername(username);
+        User user = usersRepository.findByUsername(username);
 
         // Kiểm tra mật khẩu cũ
         if (!user.getPassword().equals(oldPassword)) {

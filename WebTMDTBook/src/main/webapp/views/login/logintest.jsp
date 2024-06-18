@@ -45,7 +45,17 @@ body {
 
 </head>
 <body>
-	 <div class="container">
+	<jsp:include page="../client_layout/header.jsp"></jsp:include>
+	<div class="page-heading normal-space">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-12">
+					<h1>Đăng nhập</h1>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="container">
         <div class="row justify-content-center">
             <div class="col-md-6">
                 <h2 class="text-center mt-5">Login</h2>

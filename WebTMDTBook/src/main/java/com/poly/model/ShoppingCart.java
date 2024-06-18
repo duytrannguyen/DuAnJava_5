@@ -53,4 +53,3 @@ public class ShoppingCart {
     @OneToMany(mappedBy = "shoppingCart")
     private List<CartItem> cartItems;
 }
-

@@ -18,6 +18,7 @@ import com.poly.service.InvoiceService;
 import com.poly.service.ProductService;
 import com.poly.service.SessionService;
 import com.poly.service.UserService;
+import com.poly.service.lmpl.UserServiceImpl;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -27,7 +28,8 @@ public class Home_Controller {
 
 	@Autowired
 	private UserService userService;
-
+	@Autowired
+	UserServiceImpl userServiceImpl;
 	@Autowired
 	private SessionService sessionService;
 
@@ -44,22 +46,15 @@ public class Home_Controller {
 
 	@PostMapping("/login")
 	public String login(@ModelAttribute LoginDTO loginDTO, Model model, HttpSession session) {
-		// Kiểm tra xem loginDTO có hợp lệ không
-		if (loginDTO == null || loginDTO.getUsername() == null || loginDTO.getPassword() == null) {
-			model.addAttribute("mess", "Invalid credentials");
-
-			return "/login/logintest";
-		}
-
 		// Gọi phương thức login từ userService để kiểm tra thông tin đăng nhập
-		boolean result = userService.login(loginDTO);
+		boolean result = userServiceImpl.login(loginDTO);
 		if (result) {
 			// Lấy thông tin người dùng từ phiên làm việc
 			User user = (User) sessionService.get("current_account");
-
+			System.out.println(user);
 			// Kiểm tra xem người dùng có tồn tại và có vai trò hợp lệ không
-			if (user != null && user.getRoleId() != null) {
-				if (user.getRoleId().equals("1")) {
+			if (user != null) {
+				if (user.getRoleId().getRoleId() == 1) {
 					// Điều hướng đến trang quản trị nếu người dùng là admin
 					return "redirect:/admin/products/list";
 				} else {
@@ -104,19 +99,9 @@ public class Home_Controller {
 		return "login/finishForgotPassword";
 	}
 
-	@RequestMapping("/home/doimk")
+	@RequestMapping("/login/doimk")
 	public String changePassword() {
 		return "users/changePassword";
-	}
-
-	@RequestMapping("/home/sanpham")
-	public String sanPham() {
-		return "admin/sanPham";
-	}
-
-	@GetMapping("/admin")
-	public String homeAdmin() {
-		return "indexAdmin";
 	}
 
 	@GetMapping("/report")

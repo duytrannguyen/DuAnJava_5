@@ -46,6 +46,16 @@ body {
 </style>
 </head>
 <body>
+<jsp:include page="../client_layout/header.jsp"></jsp:include>
+	<div class="page-heading normal-space">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-12">
+					<h1>Đăng Ký</h1>
+				</div>
+			</div>
+		</div>
+	</div>
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
