@@ -36,8 +36,14 @@ public class ShoppingCart {
     @Column(nullable = false)
     private Double finalPrice;
 
+    //Khang
     @ManyToOne
-    @JoinColumn(name = "username", nullable = false)
-    private User user;
+	@JoinColumn(name = "users_id", nullable = false)
+	private User user;
+
+    //Khang
+	public String getUsername() {
+		return user.getUsername();
+	}
 }
 

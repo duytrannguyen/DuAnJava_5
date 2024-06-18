@@ -38,7 +38,7 @@ public class Invoice {
 
 	@Column(nullable = false)
     @Temporal(TemporalType.DATE)
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date paymentDate;
 
 	@Column(nullable = false)
