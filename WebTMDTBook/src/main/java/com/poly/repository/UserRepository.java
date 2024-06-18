@@ -13,7 +13,7 @@ import com.poly.model.User;
 
 public interface UserRepository extends JpaRepository<User, Integer> {
 	boolean existsByUsername(String username);
-
+//cái này cho đổi mật khẩu luôn
 	User findByUsername(String username);
 
 	@Query("SELECT u FROM User u WHERE u.roleId.roleId = 2")
@@ -43,5 +43,9 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 
 	// Tìm người dùng bởi ID
 	Optional<User> findById(Integer id);
+
+//thêm	//bắt lỗi mail
+	 User findByEmail(String email);
+	 
 
 }

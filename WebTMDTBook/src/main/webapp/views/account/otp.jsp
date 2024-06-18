@@ -27,35 +27,24 @@
 </style>
 </head>
 <body>
-	<header>
-		<jsp:include page="/views/client_layout/header.jsp" />
-	</header>
 	<br>
 
 	<div class="container d-flex justify-content-center">
 		<div class="col-md-6">
 			<div class="row">
 				<div class="card">
-					<div class="card-header">
-						<a class="headerlogin"><strong><i
-								class="bi bi-person-fill-lock"></i> Quên Mật Khẩu</strong> </a>
-					</div>
-					<div class="card-body">
-						<h1>Change Password</h1>
-						<form action="/change-password" method="post">
-							<input type="hidden" name="email" value="${email}"> <label
-								for="newPassword">New Password:</label> <input type="password"
-								id="newPassword" name="newPassword" required>
-							<button type="submit">Change Password</button>
-						</form>
-						<p>${message}</p>
-					</div>
+					<h1>Verify OTP</h1>
+					<form action="/verify-otp" method="post">
+						<input type="hidden" name="email" value="${email}"> <label
+							for="otp">OTP:</label> <input type="number" id="otp" name="otp"
+							required><br>
+						<br> <input type="submit" value="Verify OTP">
+					</form>
+					<p>${message}</p>
 				</div>
 			</div>
 		</div>
 	</div>
-	<footer>
-		<jsp:include page="/views/client_layout/footer.jsp" />
-	</footer>
+
 </body>
 </html>
