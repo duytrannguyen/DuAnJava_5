@@ -32,9 +32,7 @@
 </head>
 <body>
 	<br>
-	<header>
-		<jsp:include page="/views/client_layout/header.jsp" />
-	</header>
+
 	<div class="container d-flex justify-content-center">
 		<div class="col-md-6">
 			<div class="row">
@@ -45,24 +43,26 @@
 					</div>
 					<div class="card-body">
 						<label class="chao">Hello ${sessionScope.userName }.</label>
-						<form action="changePassword" method="get">
-							<label>Mật khẩu mới:</label> <input name="passWord"
+						<form action="changepassword" method="get">
+						<label>Mật khẩu mới:</label> <input name="oldPassword"
+								class="form-control"
+								placeholder="" type="password">
+								<br>
+							<label>Mật khẩu mới:</label> <input name="newPassword"
 								class="form-control"
 								placeholder="Mật khẩu phải nhiều hơn 8 kí tự" type="password">
 							<br> <label>Xác nhận mật khẩu:</label> <input
-								name="passWordConfirm" class="form-control"
+								name="confirmPassword" class="form-control"
 								placeholder="Mật khẩu phải nhiều hơn 8 kí tự" type="password">
 							<br>
-							<button class="btn btn-outline-success">Hoàn thành</button>
-							<button class="btn btn-outline-danger">Quay Lại</button>
+							<button type="submit" class="btn btn-outline-success">Hoàn thành</button>
+
 						</form>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	<footer>
-		<jsp:include page="/views/client_layout/footer.jsp" />
-	</footer>
+
 </body>
 </html>

@@ -32,8 +32,10 @@ import lombok.ToString;
 @Getter
 @Setter
 @Table(name = "Products", schema = "dbo", catalog = "DUANTN")
-@ToString
+//Khang
+@ToString(exclude = "invoiceItems")
 public class Product {
+	//ly
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int productId;
