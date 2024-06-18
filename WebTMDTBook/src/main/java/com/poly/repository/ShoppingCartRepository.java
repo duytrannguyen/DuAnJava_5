@@ -10,9 +10,8 @@ import com.poly.model.Product;
 import com.poly.model.ShoppingCart;
 import com.poly.model.User;
 
-public interface ShoppingCartRepository extends JpaRepository<ShoppingCart, Integer>{
+public interface ShoppingCartRepository extends JpaRepository<ShoppingCart, Integer> {
 	
-	@Query("select c from ShoppingCart c where c.user.username =:username")
-	public ShoppingCart findByAccountId(String username);
-	
+    ShoppingCart findByUser(User user);
+    
 }
