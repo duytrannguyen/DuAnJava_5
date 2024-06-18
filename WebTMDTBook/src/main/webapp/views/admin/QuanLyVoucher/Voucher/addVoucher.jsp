@@ -159,7 +159,7 @@ a {
 								<div class="col-sm-7">
 									<form:input type="number"
 										class="form-control border-bottom border-1 grey"
-										id="discountValue" path="discountValue" min="5000" />
+										id="discountValue" path="discountValue" min="5000" required="true"/>
 									<div class="text-danger col-form-label">
 										<form:errors path="discountValue" />
 									</div>

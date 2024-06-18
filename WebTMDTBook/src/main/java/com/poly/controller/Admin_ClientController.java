@@ -122,7 +122,7 @@ public class Admin_ClientController {
 	                     @RequestParam("birthDate") String birthDateStr,
 	                     @RequestParam("gender") Boolean gender,
 	                     @RequestParam("email") String email,
-	                     @RequestParam("address") String address,
+//	                     @RequestParam("address") String address,
 	                     @RequestParam(value = "profileImage", required = false) MultipartFile profileImage,
 	                     @RequestParam("roleId") int roleId,
 	                     Model model) {
@@ -143,7 +143,7 @@ public class Admin_ClientController {
 	    user.setBirthDate(birthDate);
 	    user.setGender(gender);
 	    user.setEmail(email);
-	    user.setAddress(address);
+//	    user.setAddress(address);
 
 	    // Handle profile image upload if provided
 	    if (profileImage != null && !profileImage.isEmpty()) {
